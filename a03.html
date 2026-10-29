@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ARCHIVE // 60s RETRO REPOSITORY</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,700;1,400&family=Fredoka:wght@500;700&family=Shrikhand&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --retro-bg: #fcf6ea;
+      --retro-card-bg: #fffbf0;
+      --retro-brown: #2e1c2b;
+      --retro-blue: #3b82f6;
+      --retro-pink: #ec4899;
+      --retro-yellow: #facc15;
+      --retro-border: #e6d5bc;
+      --text-muted: #6b5c69;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--retro-bg);
+      background-image: 
+        radial-gradient(circle at 10% 20%, rgba(236, 72, 153, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at 90% 80%, rgba(59, 130, 246, 0.08) 0%, transparent 40%);
+      color: var(--retro-brown);
+      font-family: 'DM Sans', Arial, sans-serif;
+      min-height: 100vh;
+      padding-bottom: 60px;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* CUSTOM STAR CURSOR */
+    #customStarCursor {
+      position: fixed;
+      width: 28px;
+      height: 28px;
+      pointer-events: none !important;
+      z-index: 999999;
+      transform: translate(-50%, -50%);
+      filter: drop-shadow(0 0 6px var(--retro-pink));
+    }
+
+    .dust-particle {
+      position: fixed;
+      pointer-events: none !important;
+      border-radius: 50%;
+      background: var(--retro-pink);
+      box-shadow: 0 0 8px var(--retro-yellow);
+      z-index: 999998;
+      animation: fadeDust 0.75s linear forwards;
+    }
+
+    @keyframes fadeDust {
+      0% { opacity: 0.95; transform: scale(1); }
+      100% { opacity: 0; transform: scale(0.15) translateY(14px); }
+    }
+
+    button, input, textarea, a, select, label {
+      cursor: pointer;
+    }
+
+    header {
+      background: var(--retro-card-bg);
+      border-bottom: 3px solid var(--retro-brown);
+      padding: 1.2rem 2.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 20px rgba(46, 28, 43, 0.08);
+      position: relative;
+      z-index: 10;
+    }
+
+    .brand-title {
+      font-family: 'Shrikhand', cursive;
+      font-size: 2.8rem;
+      letter-spacing: 2px;
+      color: var(--retro-brown);
+      text-shadow: 3px 3px 0px var(--retro-yellow), 6px 6px 0px var(--retro-pink);
+    }
+
+    .user-greeting {
+      font-family: 'DM Sans', Arial, sans-serif;
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--retro-brown);
+      background: var(--retro-yellow);
+      padding: 0.5rem 1.2rem;
+      border-radius: 30px;
+      border: 2px solid var(--retro-brown);
+      box-shadow: 2px 2px 0px var(--retro-brown);
+      transition: all 0.2s;
+    }
+
+    .user-greeting:hover {
+      transform: translateY(-2px);
+      box-shadow: 4px 4px 0px var(--retro-brown);
+    }
+
+    .app-container {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 2rem;
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 2rem;
+      position: relative;
+      z-index: 10;
+    }
+
+    .search-box {
+      background: var(--retro-card-bg);
+      border: 3px solid var(--retro-brown);
+      border-radius: 16px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      box-shadow: 6px 6px 0px var(--retro-brown);
+    }
+
+    .search-box h3 {
+      font-family: 'Shrikhand', cursive;
+      font-size: 1.5rem;
+      color: var(--retro-brown);
+      margin-bottom: 0.8rem;
+    }
+
+    .search-row {
+      display: flex;
+      gap: 0.8rem;
+      align-items: center;
+    }
+
+    .input-field {
+      width: 100%;
+      padding: 0.8rem 1rem;
+      font-family: 'DM Sans', Arial, sans-serif;
+      font-size: 1rem;
+      border: 2px solid var(--retro-brown);
+      border-radius: 8px;
+      background: #ffffff;
+      color: var(--retro-brown);
+      outline: none;
+      box-shadow: inset 2px 2px 0px rgba(46, 28, 43, 0.1);
+    }
+
+    .input-field:focus {
+      border-color: var(--retro-pink);
+    }
+
+    /* TEXT-ONLY RETRO LINK BUTTONS */
+    .btn-text {
+      background: none !important;
+      border: none !important;
+      box-shadow: none !important;
+      color: var(--retro-pink);
+      font-family: 'Fredoka', Arial, sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      padding: 0.4rem 0.6rem;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      transition: all 0.15s ease;
+      white-space: nowrap;
+    }
+
+    .btn-text:hover {
+      color: var(--retro-brown);
+      text-decoration: underline;
+      transform: translateY(-1px);
+    }
+
+    .btn-text.btn-blue {
+      color: var(--retro-blue);
+    }
+
+    .btn-text.btn-blue:hover {
+      color: var(--retro-brown);
+    }
+
+    .btn-text.btn-delete {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    .btn-text.btn-delete:hover {
+      color: var(--retro-pink);
+    }
+
+    .search-results {
+      margin-top: 1rem;
+      max-height: 260px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .result-item {
+      background: #ffffff;
+      border: 2px solid var(--retro-brown);
+      padding: 0.8rem 1rem;
+      border-radius: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 2px 2px 0px var(--retro-brown);
+    }
+
+    .section-title {
+      font-family: 'Shrikhand', cursive;
+      font-size: 2rem;
+      letter-spacing: 1px;
+      margin-bottom: 1rem;
+      color: var(--retro-brown);
+      text-shadow: 2px 2px 0px var(--retro-yellow);
+    }
+
+    .shelf-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 1.2rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .book-card {
+      background: var(--retro-card-bg);
+      color: var(--retro-brown);
+      border: 3px solid var(--retro-brown);
+      border-radius: 12px;
+      padding: 1.2rem;
+      box-shadow: 5px 5px 0px var(--retro-brown);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      min-height: 250px;
+    }
+
+    .book-card h4 {
+      font-family: 'Fredoka', Arial, sans-serif;
+      font-weight: 700;
+      font-size: 1.15rem;
+      color: var(--retro-brown);
+      margin-bottom: 0.3rem;
+    }
+
+    .book-author {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-style: italic;
+      margin-bottom: 0.8rem;
+    }
+
+    .meta-line {
+      font-family: 'DM Sans', Arial, sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--retro-brown);
+      background: rgba(250, 204, 21, 0.25);
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      display: inline-block;
+      margin-bottom: 0.3rem;
+    }
+
+    .user-note-display {
+      margin-top: 0.6rem;
+      background: #ffffff;
+      border: 2px solid var(--retro-brown);
+      padding: 0.5rem;
+      font-size: 0.82rem;
+      color: var(--retro-brown);
+      border-radius: 6px;
+      box-shadow: 2px 2px 0px var(--retro-brown);
+      word-break: break-word;
+    }
+
+    /* INK STAMP ANIMATION */
+    .stamp {
+      display: inline-block;
+      padding: 0.35rem 0.7rem;
+      font-family: 'Fredoka', Arial, sans-serif;
+      font-weight: 700;
+      font-size: 0.78rem;
+      border: 2px dashed var(--retro-pink);
+      color: var(--retro-pink);
+      background: rgba(236, 72, 153, 0.08);
+      border-radius: 6px;
+      text-transform: uppercase;
+      margin-top: 0.8rem;
+      transform: rotate(-3deg);
+      animation: stampDrop 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+      letter-spacing: 0.5px;
+    }
+
+    .stamp.returned {
+      border-color: var(--retro-blue);
+      color: var(--retro-blue);
+      background: rgba(59, 130, 246, 0.08);
+      transform: rotate(3deg);
+    }
+
+    @keyframes stampDrop {
+      0% { opacity: 0; transform: scale(2.2) rotate(12deg); }
+      100% { opacity: 1; transform: scale(-3deg); }
+    }
+
+    .dashboard-sidebar {
+      background: var(--retro-card-bg);
+      border: 3px solid var(--retro-brown);
+      border-radius: 16px;
+      padding: 1.5rem;
+      height: fit-content;
+      box-shadow: 6px 6px 0px var(--retro-brown);
+    }
+
+    .dashboard-sidebar h3 {
+      font-family: 'Shrikhand', cursive;
+      font-size: 1.5rem;
+      color: var(--retro-brown);
+      border-bottom: 2px dashed var(--retro-brown);
+      padding-bottom: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .dash-stat {
+      border-bottom: 2px dashed var(--retro-border);
+      padding: 1rem 0;
+    }
+
+    .stat-number {
+      font-family: 'Shrikhand', cursive;
+      font-size: 2rem;
+      color: var(--retro-pink);
+    }
+
+    .stat-label {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .insight-box {
+      margin-top: 1.2rem;
+      background: #ffffff;
+      border: 2px solid var(--retro-brown);
+      padding: 0.9rem;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      color: var(--retro-brown);
+      line-height: 1.4;
+      box-shadow: 3px 3px 0px var(--retro-brown);
+    }
+
+    .modal-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(46, 28, 43, 0.7);
+      backdrop-filter: blur(4px);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 99999;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal-card {
+      background: var(--retro-card-bg);
+      border: 3px solid var(--retro-brown);
+      border-radius: 16px;
+      padding: 2rem;
+      width: 90%;
+      max-width: 520px;
+      box-shadow: 8px 8px 0px var(--retro-brown);
+      position: relative;
+      z-index: 100000;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 12px;
+      right: 15px;
+      background: none;
+      border: none;
+      font-weight: 700;
+      color: var(--retro-brown);
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    .close-btn:hover {
+      color: var(--retro-pink);
+    }
+
+    /* MOBILE & TABLET MEDIA QUERIES */
+    @media (max-width: 768px) {
+      header {
+        padding: 1rem 1.2rem;
+        flex-direction: column;
+        gap: 0.8rem;
+        text-align: center;
+      }
+
+      .brand-title {
+        font-size: 2.2rem;
+      }
+
+      .app-container {
+        grid-template-columns: 1fr;
+        padding: 0 1rem;
+        margin: 1.2rem auto;
+        gap: 1.5rem;
+      }
+
+      .search-row {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .btn-text {
+        justify-content: center;
+        padding: 0.6rem 0.8rem;
+      }
+
+      .shelf-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .modal-card {
+        padding: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- CUSTOM STAR CURSOR -->
+  <svg id="customStarCursor" viewBox="0 0 24 24" fill="#ec4899">
+    <path d="M12 2l2.4 7.4h7.6l-6.2 4.5 2.4 7.4-6.2-4.5-6.2 4.5 2.4-7.4-6.2-4.5h7.6z"/>
+  </svg>
+
+  <header>
+    <h1 class="brand-title">Archive</h1>
+    <div class="user-greeting" id="userGreetingDisplay" title="Click to edit borrower name">Borrower: New User</div>
+  </header>
+
+  <div class="app-container">
+    <div>
+      <div class="search-box">
+        <h3>Find or Borrow a Book</h3>
+        <div class="search-row">
+          <input type="text" id="searchInput" class="input-field" placeholder="Search Google Books & Goodreads/OpenLibrary repositories...">
+          <button class="btn-text" id="btnSearch" type="button" style="font-size:1.05rem;">[ Search ]</button>
+        </div>
+        <div id="searchResults" class="search-results"></div>
+
+        <div style="margin-top: 1rem; font-size: 0.85rem; color: var(--text-muted);">
+          Can't find it? <a href="#" style="color: var(--retro-pink); font-weight: 700; text-decoration: none;" id="btnToggleManual">+ Add custom book record manually</a>
+        </div>
+
+        <div id="manualAddForm" style="display:none; margin-top: 1rem; border-top: 2px dashed var(--retro-border); padding-top: 1rem;">
+          <input type="text" id="manualTitle" class="input-field" placeholder="Book Title" style="margin-bottom:0.6rem;">
+          <input type="text" id="manualAuthor" class="input-field" placeholder="Author Name" style="margin-bottom:0.8rem;">
+          <button class="btn-text" id="btnSubmitManual" type="button">[ Borrow Custom Book ]</button>
+        </div>
+      </div>
+
+      <section>
+        <h2 class="section-title">Currently Borrowed</h2>
+        <div class="shelf-grid" id="borrowedShelf"></div>
+      </section>
+
+      <section>
+        <h2 class="section-title">Returned to Main Shelf</h2>
+        <div class="shelf-grid" id="archiveShelf"></div>
+      </section>
+    </div>
+
+    <aside class="dashboard-sidebar">
+      <h3>Dashboard</h3>
+
+      <div class="dash-stat">
+        <div class="stat-number" id="statBorrowed">0</div>
+        <div class="stat-label">Currently Borrowed</div>
+      </div>
+
+      <div class="dash-stat">
+        <div class="stat-number" id="statReturned">0</div>
+        <div class="stat-label">Total Returned</div>
+      </div>
+
+      <div class="dash-stat">
+        <div class="stat-label" style="margin-bottom: 0.4rem;">Top Author</div>
+        <div style="font-family: 'Fredoka', Arial, sans-serif; font-weight: 700; font-size: 1rem; color: var(--retro-brown);" id="statTopAuthor">—</div>
+      </div>
+
+      <!-- BACKUP & RESTORE DATA -->
+      <div style="margin-top: 1.2rem; border-top: 2px dashed var(--retro-border); padding-top: 1rem;">
+        <div class="stat-label" style="margin-bottom: 0.5rem;">Data Backup</div>
+        <div style="display:flex; flex-direction:column; gap:0.4rem;">
+          <button class="btn-text" id="btnBackup" type="button" style="font-size:0.8rem; justify-content:flex-start;">[ Backup Archive ]</button>
+          <button class="btn-text btn-blue" id="btnRestore" type="button" style="font-size:0.8rem; justify-content:flex-start;">[ Restore Archive ]</button>
+          <input type="file" id="fileRestoreInput" accept=".json" style="display:none;">
+        </div>
+      </div>
+
+      <div style="margin-top: 1.5rem;">
+        <div class="stat-label" style="margin-bottom: 0.4rem;">Reading Insight</div>
+        <div class="insight-box" id="readingInsightText">
+          Add books to your archive to generate automated reading preference insights and analytics.
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <div class="modal-overlay" id="bookModal">
+    <div class="modal-card">
+      <button class="close-btn" data-close="bookModal" type="button">&times;</button>
+      <div style="display: flex; gap: 1rem; margin-bottom: 1rem; align-items: flex-start;">
+        <img id="modalCover" src="" style="width: 80px; height: 110px; object-fit: cover; border-radius: 8px; border: 2px solid var(--retro-brown); display:none;" alt="Cover">
+        <div>
+          <h3 id="modalTitle" style="font-family: 'Fredoka', Arial, sans-serif; color: var(--retro-brown); font-size: 1.2rem; margin-bottom: 0.3rem;">Title</h3>
+          <p id="modalAuthor" style="color: var(--text-muted); font-style: italic; font-size: 0.9rem;">Author</p>
+        </div>
+      </div>
+      <div style="font-weight: 700; font-size: 0.85rem; margin-bottom: 0.4rem; color: var(--retro-brown);">Book Summary:</div>
+      <div id="modalDescription" style="font-size: 0.85rem; color: var(--retro-brown); line-height: 1.5; margin-bottom: 1.5rem; max-height: 180px; overflow-y: auto; background: #ffffff; padding: 0.8rem; border: 2px solid var(--retro-brown); border-radius: 6px;"></div>
+      <button class="btn-text" id="btnModalBorrow" type="button" style="font-size: 1.1rem;">[ Borrow Book ]</button>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="noteModal">
+    <div class="modal-card">
+      <button class="close-btn" data-close="noteModal" type="button">&times;</button>
+      <h3 style="font-family: 'Fredoka', Arial, sans-serif; font-size: 1.2rem; color: var(--retro-brown); margin-bottom: 0.8rem;">Add Book Note</h3>
+      <textarea id="noteInput" class="input-field" style="height: 120px; resize: none; margin-bottom: 1rem;" placeholder="Write your thoughts, quotes, or mini-review..."></textarea>
+      <button class="btn-text" id="btnSaveNote" type="button" style="font-size: 1.1rem;">[ Save Note ]</button>
+    </div>
+  </div>
+
+  <script>
+    let currentUser = 'New User';
+    let books = [];
+    let cachedSearchResults = [];
+    let activeBookForModal = null;
+    let activeBookIdForNote = null;
+
+    try {
+      currentUser = localStorage.getItem('whimsygothUserName') || 'New User';
+      books = JSON.parse(localStorage.getItem('whimsygothBooks')) || [];
+    } catch(err) {
+      currentUser = 'New User';
+      books = [];
+    }
+
+    const starCursor = document.getElementById('customStarCursor');
+
+    // MOUSE TRAIL & CURSOR
+    document.addEventListener('mousemove', (e) => {
+      if (starCursor) {
+        starCursor.style.left = e.clientX + 'px';
+        starCursor.style.top = e.clientY + 'px';
+      }
+
+      if (Math.random() < 0.2) {
+        const dust = document.createElement('div');
+        dust.className = 'dust-particle';
+        dust.style.left = e.clientX + 'px';
+        dust.style.top = e.clientY + 'px';
+        const size = Math.random() * 5 + 3;
+        dust.style.width = size + 'px';
+        dust.style.height = size + 'px';
+        document.body.appendChild(dust);
+        setTimeout(() => dust.remove(), 750);
+      }
+    });
+
+    window.addEventListener('DOMContentLoaded', () => {
+      updateGreetingDisplay();
+      renderShelves();
+      bindEvents();
+    });
+
+    function updateGreetingDisplay() {
+      const el = document.getElementById('userGreetingDisplay');
+      if (el) el.innerText = 'Borrower: ' + currentUser;
+    }
+
+    function escapeHTML(str) {
+      return String(str || '').replace(/[&<>'"]/g, 
+        tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag)
+      );
+    }
+
+    function bindEvents() {
+      // Borrower Name Edit
+      document.getElementById('userGreetingDisplay').addEventListener('click', () => {
+        const newName = prompt("Enter new borrower name:", currentUser);
+        if (newName && newName.trim() !== '') {
+          currentUser = newName.trim();
+          try { localStorage.setItem('whimsygothUserName', currentUser); } catch(e) {}
+          updateGreetingDisplay();
+          renderShelves();
+        }
+      });
+
+      // Search Inputs
+      document.getElementById('btnSearch').addEventListener('click', executeSearch);
+      document.getElementById('searchInput').addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') executeSearch();
+      });
+
+      // Manual Add Form Toggle
+      document.getElementById('btnToggleManual').addEventListener('click', (e) => {
+        e.preventDefault();
+        const form = document.getElementById('manualAddForm');
+        if (form) form.style.display = form.style.display === 'none' ? 'block' : 'none';
+      });
+
+      // Submit Manual Book
+      document.getElementById('btnSubmitManual').addEventListener('click', () => {
+        const titleInput = document.getElementById('manualTitle');
+        const authorInput = document.getElementById('manualAuthor');
+        const title = titleInput ? titleInput.value.trim() : '';
+        const author = authorInput && authorInput.value.trim() ? authorInput.value.trim() : 'Unknown Author';
+
+        if (!title) {
+          alert('Please enter a book title!');
+          return;
+        }
+
+        borrowBook(title, author);
+        if (titleInput) titleInput.value = '';
+        if (authorInput) authorInput.value = '';
+        document.getElementById('manualAddForm').style.display = 'none';
+      });
+
+      // Backup & Restore Events
+      document.getElementById('btnBackup').addEventListener('click', backupArchive);
+      document.getElementById('btnRestore').addEventListener('click', () => {
+        document.getElementById('fileRestoreInput').click();
+      });
+      document.getElementById('fileRestoreInput').addEventListener('change', restoreArchive);
+
+      // Modal Borrow Confirmation
+      document.getElementById('btnModalBorrow').addEventListener('click', () => {
+        if (activeBookForModal) {
+          borrowBook(activeBookForModal.title, activeBookForModal.author);
+          closeModal('bookModal');
+        }
+      });
+
+      // Save Note
+      document.getElementById('btnSaveNote').addEventListener('click', () => {
+        const noteInput = document.getElementById('noteInput');
+        if (!noteInput) return;
+        const noteText = noteInput.value.trim();
+        const book = books.find(b => b.id === activeBookIdForNote);
+        if (book) {
+          book.note = noteText;
+          saveAndRender();
+        }
+        closeModal('noteModal');
+      });
+
+      // EVENT DELEGATION FOR DYNAMIC SHELF BUTTONS & MODAL CLOSES
+      document.addEventListener('click', (e) => {
+        const target = e.target.closest('[data-close], .btn-view-search, .btn-borrow-search, .btn-action-return, .btn-action-note, .btn-action-delete');
+        if (!target) return;
+
+        if (target.dataset.close) {
+          closeModal(target.dataset.close);
+        }
+        if (target.classList.contains('btn-view-search')) {
+          openBookModal(parseInt(target.dataset.index, 10));
+        }
+        if (target.classList.contains('btn-borrow-search')) {
+          const idx = parseInt(target.dataset.index, 10);
+          const book = cachedSearchResults[idx];
+          if (book) {
+            borrowBook(book.title, book.author);
+            document.getElementById('searchResults').innerHTML = '';
+            document.getElementById('searchInput').value = '';
+            cachedSearchResults = [];
+          }
+        }
+        if (target.classList.contains('btn-action-return')) {
+          returnBook(parseFloat(target.dataset.id));
+        }
+        if (target.classList.contains('btn-action-note')) {
+          openNoteModal(parseFloat(target.dataset.id));
+        }
+        if (target.classList.contains('btn-action-delete')) {
+          deleteBook(parseFloat(target.dataset.id));
+        }
+      });
+    }
+
+    // MULTI-REPOSITORY SEARCH
+    function executeSearch() {
+      const searchInput = document.getElementById('searchInput');
+      const resultsDiv = document.getElementById('searchResults');
+      if (!searchInput || !resultsDiv) return;
+
+      const query = searchInput.value.trim();
+      if (!query) return;
+
+      resultsDiv.innerHTML = '<div style="font-size:0.85rem; color:var(--retro-pink); font-weight:700; padding:0.5rem 0;">Searching repositories...</div>';
+
+      const gFetch = fetch('https://www.googleapis.com/books/v1/volumes?q=' + encodeURIComponent(query) + '&maxResults=4')
+        .then(res => res.json())
+        .catch(() => null);
+
+      const olFetch = fetch('https://openlibrary.org/search.json?q=' + encodeURIComponent(query) + '&limit=4')
+        .then(res => res.json())
+        .catch(() => null);
+
+      Promise.all([gFetch, olFetch]).then(([gData, olData]) => {
+        cachedSearchResults = [];
+
+        if (gData && gData.items) {
+          gData.items.forEach(item => {
+            const info = item.volumeInfo || {};
+            cachedSearchResults.push({
+              title: info.title || 'Untitled',
+              author: (info.authors && info.authors[0]) ? info.authors[0] : 'Unknown Author',
+              description: info.description ? info.description.replace(/<[^>]*>?/gm, '') : 'No detailed summary available in Google Books repository.',
+              cover: (info.imageLinks && info.imageLinks.thumbnail) ? info.imageLinks.thumbnail : ''
+            });
+          });
+        }
+
+        if (olData && olData.docs) {
+          olData.docs.forEach(doc => {
+            cachedSearchResults.push({
+              title: doc.title || 'Untitled',
+              author: (doc.author_name && doc.author_name[0]) ? doc.author_name[0] : 'Unknown Author',
+              description: 'Cataloged in Goodreads/OpenLibrary index (First published: ' + (doc.first_publish_year || 'N/A') + ').',
+              cover: doc.cover_i ? 'https://covers.openlibrary.org/b/id/' + doc.cover_i + '-M.jpg' : ''
+            });
+          });
+        }
+
+        renderSearchResults(resultsDiv, query);
+      });
+    }
+
+    function renderSearchResults(resultsDiv, query) {
+      if (!resultsDiv) return;
+      if (cachedSearchResults.length === 0) {
+        cachedSearchResults.push({
+          title: query || 'Custom Book',
+          author: 'Custom Entry',
+          description: 'Custom entry created in archive.',
+          cover: ''
+        });
+      }
+
+      resultsDiv.innerHTML = '';
+      cachedSearchResults.forEach((book, index) => {
+        const div = document.createElement('div');
+        div.className = 'result-item';
+        div.innerHTML = `
+          <div>
+            <strong style="color:var(--retro-brown); font-size:0.95rem;">${escapeHTML(book.title)}</strong>
+            <div style="font-size:0.8rem; color:var(--text-muted); font-style:italic;">${escapeHTML(book.author)}</div>
+          </div>
+          <div style="display:flex; gap:0.6rem;">
+            <button class="btn-text btn-blue btn-view-search" data-index="${index}" type="button">[ View ]</button>
+            <button class="btn-text btn-borrow-search" data-index="${index}" type="button">[ Borrow ]</button>
+          </div>
+        `;
+        resultsDiv.appendChild(div);
+      });
+    }
+
+    function openBookModal(index) {
+      const book = cachedSearchResults[index];
+      if (!book) return;
+      activeBookForModal = book;
+
+      const titleEl = document.getElementById('modalTitle');
+      const authorEl = document.getElementById('modalAuthor');
+      const descEl = document.getElementById('modalDescription');
+      const img = document.getElementById('modalCover');
+
+      if (titleEl) titleEl.innerText = book.title;
+      if (authorEl) authorEl.innerText = book.author;
+      if (descEl) descEl.innerText = book.description;
+
+      if (img) {
+        if (book.cover) {
+          img.src = book.cover;
+          img.style.display = 'block';
+        } else {
+          img.style.display = 'none';
+        }
+      }
+
+      openModal('bookModal');
+    }
+
+    function borrowBook(title, author) {
+      const newBook = {
+        id: Date.now() + Math.random(),
+        title: title,
+        author: author,
+        borrowedDate: new Date().toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' }).toUpperCase(),
+        borrower: currentUser,
+        status: 'borrowed',
+        returnDate: null,
+        note: ''
+      };
+
+      books.unshift(newBook);
+      saveAndRender();
+
+      const resultsDiv = document.getElementById('searchResults');
+      const searchInput = document.getElementById('searchInput');
+      if (resultsDiv) resultsDiv.innerHTML = '';
+      if (searchInput) searchInput.value = '';
+      cachedSearchResults = [];
+    }
+
+    function returnBook(id) {
+      const book = books.find(b => b.id === id);
+      if (book) {
+        book.status = 'returned';
+        book.returnDate = new Date().toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' }).toUpperCase();
+        saveAndRender();
+      }
+    }
+
+    function deleteBook(id) {
+      if (confirm("Permanently delete this book record from your archive?")) {
+        books = books.filter(b => b.id !== id);
+        saveAndRender();
+      }
+    }
+
+    function backupArchive() {
+      const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify({ user: currentUser, books: books }));
+      const downloadAnchor = document.createElement('a');
+      downloadAnchor.setAttribute("href", dataStr);
+      downloadAnchor.setAttribute("download", "retro_archive_backup.json");
+      document.body.appendChild(downloadAnchor);
+      downloadAnchor.click();
+      downloadAnchor.remove();
+    }
+
+    function restoreArchive(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        try {
+          const restored = JSON.parse(e.target.result);
+          if (restored.books && Array.isArray(restored.books)) {
+            books = restored.books;
+            if (restored.user) currentUser = restored.user;
+            saveAndRender();
+            updateGreetingDisplay();
+            alert("Archive successfully restored!");
+          } else {
+            alert("Invalid backup file format.");
+          }
+        } catch(err) {
+          alert("Error reading backup file.");
+        }
+      };
+      reader.readAsText(file);
+    }
+
+    function openNoteModal(id) {
+      activeBookIdForNote = id;
+      const book = books.find(b => b.id === id);
+      const noteInput = document.getElementById('noteInput');
+      if (noteInput) {
+        noteInput.value = book ? (book.note || '') : '';
+      }
+      openModal('noteModal');
+    }
+
+    function openModal(id) {
+      const el = document.getElementById(id);
+      if (el) el.classList.add('active');
+    }
+
+    function closeModal(id) {
+      const el = document.getElementById(id);
+      if (el) el.classList.remove('active');
+    }
+
+    function saveAndRender() {
+      try {
+        localStorage.setItem('whimsygothBooks', JSON.stringify(books));
+      } catch(e) {}
+      renderShelves();
+    }
+
+    function renderShelves() {
+      const borrowedContainer = document.getElementById('borrowedShelf');
+      const archiveContainer = document.getElementById('archiveShelf');
+      if (!borrowedContainer || !archiveContainer) return;
+
+      borrowedContainer.innerHTML = '';
+      archiveContainer.innerHTML = '';
+
+      let borrowedCount = 0;
+      let returnedCount = 0;
+      const authorCounts = {};
+
+      books.forEach(book => {
+        const auth = book.author || 'Unknown Author';
+        authorCounts[auth] = (authorCounts[auth] || 0) + 1;
+
+        const card = document.createElement('div');
+        card.className = 'book-card';
+
+        const noteHTML = book.note ? `<div class="user-note-display">"${escapeHTML(book.note)}"</div>` : '';
+
+        if (book.status === 'borrowed') {
+          borrowedCount++;
+          card.innerHTML = `
+            <div>
+              <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+                <h4 style="flex:1; padding-right:0.5rem;">${escapeHTML(book.title)}</h4>
+                <button class="btn-text btn-delete btn-action-delete" data-id="${book.id}" type="button" title="Delete Record">[ delete ]</button>
+              </div>
+              <p class="book-author">by ${escapeHTML(book.author)}</p>
+              <div class="meta-line">CHECKOUT: ${escapeHTML(book.borrowedDate)}</div><br>
+              <div class="meta-line">BORROWER: ${escapeHTML(book.borrower || currentUser)}</div>
+              ${noteHTML}
+              <div><span class="stamp">BORROWED — ${escapeHTML(book.borrowedDate)}</span></div>
+            </div>
+            <div style="display:flex; gap:0.8rem; margin-top:1rem;">
+              <button class="btn-text btn-blue btn-action-return" data-id="${book.id}" type="button">[ Return ]</button>
+              <button class="btn-text btn-action-note" data-id="${book.id}" type="button">[ Note ]</button>
+            </div>
+          `;
+          borrowedContainer.appendChild(card);
+        } else {
+          returnedCount++;
+          card.innerHTML = `
+            <div>
+              <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+                <h4 style="flex:1; padding-right:0.5rem;">${escapeHTML(book.title)}</h4>
+                <button class="btn-text btn-delete btn-action-delete" data-id="${book.id}" type="button" title="Delete Record">[ delete ]</button>
+              </div>
+              <p class="book-author">by ${escapeHTML(book.author)}</p>
+              <div class="meta-line">CHECKOUT: ${escapeHTML(book.borrowedDate)}</div><br>
+              <div class="meta-line">RETURNED: ${escapeHTML(book.returnDate)}</div>
+              ${noteHTML}
+              <div><span class="stamp returned">RETURNED — ${escapeHTML(book.returnDate)}</span></div>
+            </div>
+            <div style="display:flex; gap:0.8rem; margin-top:1rem;">
+              <button class="btn-text btn-action-note" data-id="${book.id}" type="button">
+                [ ${book.note ? 'Edit Note' : 'Add Note'} ]
+              </button>
+            </div>
+          `;
+          archiveContainer.appendChild(card);
+        }
+      });
+
+      const statBorrowed = document.getElementById('statBorrowed');
+      const statReturned = document.getElementById('statReturned');
+      const statTopAuthor = document.getElementById('statTopAuthor');
+
+      if (statBorrowed) statBorrowed.innerText = borrowedCount;
+      if (statReturned) statReturned.innerText = returnedCount;
+
+      let topAuthor = '—';
+      let maxCount = 0;
+      for (const [auth, count] of Object.entries(authorCounts)) {
+        if (count > maxCount) {
+          maxCount = count;
+          topAuthor = auth;
+        }
+      }
+      if (statTopAuthor) statTopAuthor.innerText = topAuthor;
+
+      const insightEl = document.getElementById('readingInsightText');
+      if (insightEl) {
+        if (books.length === 0) {
+          insightEl.innerText = "Add books to your archive to generate automated reading preference insights and analytics.";
+        } else {
+          const total = books.length;
+          const completionRate = Math.round((returnedCount / total) * 100);
+          insightEl.innerHTML = `Active reading profile reflects a <b>${completionRate}%</b> completion archive rate. Frequent exploration under author <b>${escapeHTML(topAuthor)}</b>.`;
+        }
+      }
+    }
+  </script>
+</body>
+</html>
